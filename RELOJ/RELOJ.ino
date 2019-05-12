@@ -36,6 +36,7 @@ long DATA=0;
 int banderaPosition=0;
 int banderaTimer=0;
 int cuentalimite=0;
+bool stopped=true;
 void setup() {
   pinMode(out1, OUTPUT);
   pinMode(out2, OUTPUT);
@@ -82,16 +83,19 @@ void loop() {
           if(CMD=="S"){
               Start();
                Send("Start OK",1);
+               Serial.println("Start ok");
             }
 
           if(CMD=="ST"){
               Stop();
               Send("Stop OK",1);
+              Serial.println("Stop ok");
             }
 
           if(CMD=="PS"){
               Pause();
               Send("Pause OK",1);
+              
             }
 
           if(CMD=="RS"){
@@ -102,19 +106,18 @@ void loop() {
           if(CMD=="T"){
               setTime(DATA);
               Send("Time OK",1);
+              Serial.println("set time ok");
             }
 
           if(CMD=="H"){
             Send("Home OK",1);
-              Home();
+             Home();
+             Serial.println("home ok");
             }
 
           if(CMD=="SP"){
-            Serial.print("cuentas =");
-            
-            
-            SetPosition(DATA);
-            
+            Serial.print("cuentas =");                   
+            SetPosition(DATA);            
             Send("SetPosition OK",1);
             }
 
@@ -131,24 +134,23 @@ void loop() {
             }
     }
     memset(packetBuffer, 0, UDP_TX_PACKET_MAX_SIZE);
- 
+
+    if(stepCount>=cuentalimite && stopped==false){
+      Stop();     
+      }
+    
 }
 
 void callback(){
 
-    if(stepCount<=cuentalimite){
-        myStepper.step(1);
-        
+    if(stepCount<cuentalimite && stepCount!=cuentalimite){
+        myStepper.step(1);        
         stepCount=stepCount+1;
         //Send("COUNTING",stepCount); 
-        Serial.println(cuentalimite);
+        Serial.print("counting ");
+        Serial.println(stepCount);
       }
-
-     else{
-       Stop();
-       stepCount=0;
-      }
-    
+   
   }
 
 
@@ -172,7 +174,7 @@ void setTime(int tiempo){
   }
 
 void Start(){
-  TurnOn();
+  //TurnOn();
   if(banderaTimer==1){
         cuentalimite=cuentalimite;
      }
@@ -180,8 +182,9 @@ void Start(){
   if(banderaPosition==1){
         cuentalimite=0;
         }
-  
+  Timer1.setPeriod(1757812);
   Timer1.resume();
+   stopped=false;
   }
 
 void Resume(){
@@ -189,15 +192,14 @@ void Resume(){
   }
 
 void Stop(){
-  TurnOff();
+  //TurnOff();
   Send("Stopped",1);
   Timer1.stop();
+   stopped=true;
   }
-
 
 void Alert(){
   }
-
 
 void Pause(){
   Timer1.stop();
@@ -223,8 +225,7 @@ String Read(){
 
 void Right(int cuenta){
     Timer1.stop();
-    Serial.println("motor hacia adelante");
-    
+    Serial.println("motor hacia adelante"); 
     myStepper.step(5);
   }
 
@@ -232,16 +233,14 @@ void Right(int cuenta){
 void Left(int cuenta2){
     Timer1.stop();
     Serial.println("motor hacia atras");
-    
     cuenta2=cuenta2 - 2*cuenta2;
-    
     myStepper.step(-5);
-    
   }
 
 void StopEngine(){
    Serial.println("Engine Stopped");
   }
+  
 void TurnOff(){
   digitalWrite(out1, LOW);
   digitalWrite(out2, LOW);
@@ -278,7 +277,7 @@ void Home(){
      */
 
     if(stepCount>0){
-      myStepper.step(-stepCount);
+      myStepper.step(stepCount);
          stepCount=0;
       }
 
@@ -309,7 +308,7 @@ void SetPosition(int cuenta3){
     banderaPosition=1;
     
     if(banderaTimer==1){
-      cuentalimite=2048;
+      cuentalimite=cuenta3;
       }
 
     if(banderaPosition==1){

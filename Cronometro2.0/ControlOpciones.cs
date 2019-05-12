@@ -17,6 +17,9 @@ namespace Cronometro2._0
         COnfiguracion config;
         public delegate void EventoMotor(int inter, EventArgs e);
         public event EventoMotor move;
+
+        public delegate void EventoSave(COnfiguracion conf, EventArgs e);
+        public event EventoSave save;
         public ControlOpciones()
         {
             InitializeComponent();
@@ -75,6 +78,7 @@ namespace Cronometro2._0
             }
 
             SerializeJson(ip, puerto, localip, localpuerto);
+            save(config,null);
         }
 
 

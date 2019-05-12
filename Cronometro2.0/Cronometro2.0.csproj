@@ -144,5 +144,8 @@
   <ItemGroup>
     <None Include="Resources\icons8-minutero-64.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Circle_Yellow.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

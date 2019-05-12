@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
 using System.Net.NetworkInformation;
+using System.Timers;
 
 namespace Cronometro2._0
 {
@@ -31,49 +32,55 @@ namespace Cronometro2._0
         bool flagpause = false;
         bool flagstop = false;
 
-        //
         string TiempoTotal = null;
-
         //cuenta de motor a pasos
         int cuentaStepper = 0;
         private DateTime _inicio;
         System.Net.IPEndPoint ServerEndPoint;
         System.Net.IPEndPoint RemoteEndPoint;
         UdpClient socket;
-
         volatile Boolean activateRight = false;
         volatile Boolean activateLeft = true;
-
         //comando y dato de retorno
-
         string CommandEcho = null;
         string DataEcho = null;
-
+        System.Timers.Timer checkingDevice;
         public Form1()
         {
+            checkingDevice = new System.Timers.Timer();
             tiempo = new Crono();   
             tiempo.pulso += tic;
             
-            //eventos para movimiento de motor
-            
-
+            //eventos para movimiento de motor            
             regresivo = new ControlRegresivo();
             regresivo.enter += GetRegressiveTime;
-
             progresivo = new ControlPogresivo();
             progresivo.enter += GetProgressiveTime;
             opciones = new ControlOpciones();
             opciones.move += MoveMotor;
+            opciones.save += SaveConfig;
             config = opciones.DeserializeJson("configuration.json");
             ServerEndPoint = new System.Net.IPEndPoint(System.Net.IPAddress.Any, config.localport);
             RemoteEndPoint = new System.Net.IPEndPoint(System.Net.IPAddress.Parse(config.ipaddress), config.port);
             socket = new UdpClient(config.localport);
             socket.BeginReceive(new AsyncCallback(Receive), null);
             InitializeComponent();
-
-            this.Stop.Enabled = false;
+            PingHost(config.ipaddress);
+            checkingDevice.Interval = 10000;
+            checkingDevice.Elapsed += Checking;
+            checkingDevice.Start();
+           
         }
 
+        private void SaveConfig(COnfiguracion conf, EventArgs e)
+        {
+            config = conf;
+        }
+
+        private void Checking(object sender, ElapsedEventArgs e)
+        {
+            PingHost(config.ipaddress);
+        }
 
         private void Start_Click(object sender, EventArgs e)
         {
@@ -100,7 +107,6 @@ namespace Cronometro2._0
            
             //enviar a arduino
         }
-
 
         private void tic(int sender, EventArgs e) {
             TimeSpan transcurrio = DateTime.Now - this._inicio;
@@ -131,13 +137,11 @@ namespace Cronometro2._0
             });
         }
 
-
         private void valores_Scroll(object sender, EventArgs e)
         {
             
             //tiempo.SetInterval(valores.Value);
         }
-
 
         private void Opciones_Click(object sender, EventArgs e)
         {
@@ -151,7 +155,6 @@ namespace Cronometro2._0
 
             }
         }
-
 
         private void Home_Click(object sender, EventArgs e)
         {
@@ -170,7 +173,6 @@ namespace Cronometro2._0
                 
             }
         }
-
 
         private void TypeRegresivo_Click(object sender, EventArgs e)
         {
@@ -216,7 +218,6 @@ namespace Cronometro2._0
             });
         }
 
-
         private void Stop_Click(object sender, EventArgs e)
         {
             tiempo.Stop();
@@ -231,8 +232,7 @@ namespace Cronometro2._0
                 ESTADO.Text = "EN REPOSO";
             });
         }
-
-     
+    
         //envio regresivo a arduino
         private void sendRegressiveData(string command, string data) {
             int nuevoValor = 0;
@@ -283,7 +283,8 @@ namespace Cronometro2._0
                     return;
                 }
 
-                valor = valor * 29296;
+                float fValue = 34.33f;
+                valor = Convert.ToInt32(valor * fValue);
 
             }
             catch (Exception ex)
@@ -405,7 +406,7 @@ namespace Cronometro2._0
 
             this.Invoke(new MethodInvoker(delegate
             {
-                
+                statusmessage.Text = CommandEcho;
             }
 
                 ));
@@ -420,6 +421,64 @@ namespace Cronometro2._0
         // Then assume that X has been clicked and act accordingly.
         }
 
-       
+        public  void PingHost(object nameOrAddress)
+        {
+            bool pingable = false;
+            Ping pinger = null;
+            string address = (string)nameOrAddress;
+            try
+            {
+                pinger = new Ping();
+                PingReply reply = pinger.Send(address);
+                pingable = reply.Status == IPStatus.Success;
+
+                
+            }
+            catch (PingException)
+            {
+                // Discard PingExceptions and return false;
+                
+            }
+            finally
+            {
+                if (pinger != null)
+                {
+                    pinger.Dispose();
+                }
+            }
+
+
+            try
+            {
+                if (pingable)
+                {
+                    this.Invoke(new MethodInvoker(delegate
+                    {
+                        pictureBox1.Image = Properties.Resources.Circle_Green;
+                    }
+
+                    ));
+                }
+                else
+                {
+                    this.Invoke(new MethodInvoker(delegate
+                    {
+                        pictureBox1.Image = Properties.Resources.circle_red;
+                    }
+
+                    ));
+                }
+            }
+            catch (Exception ex) {
+
+            }
+
+            
+
+            
+
+        }
+
+
     }
 }
