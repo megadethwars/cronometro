@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel1 = new System.Windows.Forms.Panel();
             this.Start = new System.Windows.Forms.Button();
             this.Stop = new System.Windows.Forms.Button();
@@ -43,11 +44,11 @@
             this.horas = new System.Windows.Forms.Label();
             this.MENSAJE = new System.Windows.Forms.Label();
             this.ESTADO = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.valores)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
-            this.FormClosing += Form1_FormClosing;
-            
             // 
             // panel1
             // 
@@ -92,6 +93,7 @@
             // 
             // TypeRegresivo
             // 
+            this.TypeRegresivo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TypeRegresivo.Location = new System.Drawing.Point(27, 12);
             this.TypeRegresivo.Name = "TypeRegresivo";
             this.TypeRegresivo.Size = new System.Drawing.Size(107, 46);
@@ -102,9 +104,10 @@
             // 
             // Progresivo
             // 
-            this.Progresivo.Location = new System.Drawing.Point(340, 12);
+            this.Progresivo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Progresivo.Location = new System.Drawing.Point(327, 12);
             this.Progresivo.Name = "Progresivo";
-            this.Progresivo.Size = new System.Drawing.Size(105, 46);
+            this.Progresivo.Size = new System.Drawing.Size(118, 46);
             this.Progresivo.TabIndex = 6;
             this.Progresivo.Text = "Progresivo";
             this.Progresivo.UseVisualStyleBackColor = true;
@@ -114,9 +117,9 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.SystemColors.HotTrack;
             this.pictureBox1.Image = global::Cronometro2._0.Properties.Resources.circle_red;
-            this.pictureBox1.Location = new System.Drawing.Point(807, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(837, 12);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(59, 57);
+            this.pictureBox1.Size = new System.Drawing.Size(29, 28);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 10;
             this.pictureBox1.TabStop = false;
@@ -145,7 +148,9 @@
             // 
             this.milisegundos.AutoSize = true;
             this.milisegundos.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.milisegundos.Location = new System.Drawing.Point(809, 147);
+            this.milisegundos.ForeColor = System.Drawing.Color.White;
+            this.milisegundos.Image = ((System.Drawing.Image)(resources.GetObject("milisegundos.Image")));
+            this.milisegundos.Location = new System.Drawing.Point(785, 99);
             this.milisegundos.Name = "milisegundos";
             this.milisegundos.Size = new System.Drawing.Size(39, 42);
             this.milisegundos.TabIndex = 11;
@@ -155,7 +160,9 @@
             // 
             this.segundos.AutoSize = true;
             this.segundos.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.segundos.Location = new System.Drawing.Point(712, 147);
+            this.segundos.ForeColor = System.Drawing.Color.White;
+            this.segundos.Image = ((System.Drawing.Image)(resources.GetObject("segundos.Image")));
+            this.segundos.Location = new System.Drawing.Point(697, 99);
             this.segundos.Name = "segundos";
             this.segundos.Size = new System.Drawing.Size(39, 42);
             this.segundos.TabIndex = 12;
@@ -165,7 +172,9 @@
             // 
             this.minutos.AutoSize = true;
             this.minutos.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.minutos.Location = new System.Drawing.Point(625, 147);
+            this.minutos.ForeColor = System.Drawing.Color.White;
+            this.minutos.Image = ((System.Drawing.Image)(resources.GetObject("minutos.Image")));
+            this.minutos.Location = new System.Drawing.Point(610, 99);
             this.minutos.Name = "minutos";
             this.minutos.Size = new System.Drawing.Size(39, 42);
             this.minutos.TabIndex = 13;
@@ -175,7 +184,9 @@
             // 
             this.horas.AutoSize = true;
             this.horas.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.horas.Location = new System.Drawing.Point(519, 147);
+            this.horas.ForeColor = System.Drawing.Color.White;
+            this.horas.Image = ((System.Drawing.Image)(resources.GetObject("horas.Image")));
+            this.horas.Location = new System.Drawing.Point(504, 99);
             this.horas.Name = "horas";
             this.horas.Size = new System.Drawing.Size(39, 42);
             this.horas.TabIndex = 14;
@@ -185,13 +196,14 @@
             // 
             this.MENSAJE.AutoSize = true;
             this.MENSAJE.BackColor = System.Drawing.Color.Green;
-            this.MENSAJE.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MENSAJE.Location = new System.Drawing.Point(451, 9);
+            this.MENSAJE.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MENSAJE.ForeColor = System.Drawing.Color.White;
+            this.MENSAJE.Image = global::Cronometro2._0.Properties.Resources.qzEYl1Y;
+            this.MENSAJE.Location = new System.Drawing.Point(610, 12);
             this.MENSAJE.Name = "MENSAJE";
-            this.MENSAJE.Size = new System.Drawing.Size(121, 31);
+            this.MENSAJE.Size = new System.Drawing.Size(141, 37);
             this.MENSAJE.TabIndex = 15;
             this.MENSAJE.Text = "CRONO";
-            
             // 
             // ESTADO
             // 
@@ -204,12 +216,25 @@
             this.ESTADO.TabIndex = 16;
             this.ESTADO.Text = "EN REPOSO";
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.pictureBox2.BackgroundImage = global::Cronometro2._0.Properties.Resources.qzEYl1Y;
+            this.pictureBox2.Image = global::Cronometro2._0.Properties.Resources.circle_red;
+            this.pictureBox2.Location = new System.Drawing.Point(598, 147);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(138, 134);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 17;
+            this.pictureBox2.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::Cronometro2._0.Properties.Resources.qzEYl1Y;
-            this.ClientSize = new System.Drawing.Size(878, 362);
+            this.ClientSize = new System.Drawing.Size(878, 365);
+            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.ESTADO);
             this.Controls.Add(this.MENSAJE);
             this.Controls.Add(this.horas);
@@ -229,6 +254,7 @@
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.valores)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -251,6 +277,7 @@
         private System.Windows.Forms.Label horas;
         private System.Windows.Forms.Label MENSAJE;
         private System.Windows.Forms.Label ESTADO;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }
 

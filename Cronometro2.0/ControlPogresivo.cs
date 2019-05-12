@@ -39,6 +39,12 @@ namespace Cronometro2._0
 
         private void Set_Click(object sender, EventArgs e)
         {
+            if (textBox1.Text == "" || textBox1.Text == null)
+            {
+                MessageBox.Show("Campo incorrecto");
+                return;
+            }
+
             this.Invoke((MethodInvoker)delegate {
                 enter(textBox1.Text, null);
             });

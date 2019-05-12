@@ -32,10 +32,23 @@ namespace Cronometro2._0
             if (e.KeyCode == Keys.Enter)
             {
                 //enter key is down
-                this.Invoke((MethodInvoker)delegate {
-                    enter(textBox1.Text, null);
-                });
+               
             }
+        }
+
+        private void Set_Click(object sender, EventArgs e)
+        {
+
+            if (textBox1.Text=="" || textBox1.Text==null) {
+                MessageBox.Show("Campo incorrecto");
+                return;
+            }
+
+            this.Invoke((MethodInvoker)delegate {
+
+
+                enter(textBox1.Text, null);
+            });
         }
     }
 }

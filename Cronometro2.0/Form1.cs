@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
+using System.Net.NetworkInformation;
+
 namespace Cronometro2._0
 {
     public partial class Form1 : Form
@@ -230,9 +232,7 @@ namespace Cronometro2._0
             });
         }
 
-
-        
-
+     
         //envio regresivo a arduino
         private void sendRegressiveData(string command, string data) {
             int nuevoValor = 0;
@@ -420,5 +420,6 @@ namespace Cronometro2._0
         // Then assume that X has been clicked and act accordingly.
         }
 
+       
     }
 }
