@@ -11,7 +11,7 @@ namespace Cronometro2._0
     {
         Timer tiempo;
         private DateTime _inicio;
-        private int intervalo=500;
+        private int intervalo=1000;
         
         public  delegate void EventoCrono(int inter,EventArgs e);
         public event EventoCrono pulso;

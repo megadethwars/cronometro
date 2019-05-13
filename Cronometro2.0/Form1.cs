@@ -21,7 +21,7 @@ namespace Cronometro2._0
         int seconds = 0;
         int minutes = 0;
         ControlRegresivo regresivo;
-        ControlPogresivo progresivo;
+        ControlProgresivo progresivo;
         ControlOpciones opciones;
         COnfiguracion config;
 
@@ -31,6 +31,7 @@ namespace Cronometro2._0
         bool flagStart = false;
         bool flagpause = false;
         bool flagstop = false;
+        int proceso = 0;
 
         string TiempoTotal = null;
         //cuenta de motor a pasos
@@ -54,7 +55,7 @@ namespace Cronometro2._0
             //eventos para movimiento de motor            
             regresivo = new ControlRegresivo();
             regresivo.enter += GetRegressiveTime;
-            progresivo = new ControlPogresivo();
+            progresivo = new ControlProgresivo();
             progresivo.enter += GetProgressiveTime;
             opciones = new ControlOpciones();
             opciones.move += MoveMotor;
@@ -69,7 +70,7 @@ namespace Cronometro2._0
             checkingDevice.Interval = 10000;
             checkingDevice.Elapsed += Checking;
             checkingDevice.Start();
-           
+            this.Stop.Enabled = false;
         }
 
         private void SaveConfig(COnfiguracion conf, EventArgs e)
@@ -109,11 +110,9 @@ namespace Cronometro2._0
         }
 
         private void tic(int sender, EventArgs e) {
-            TimeSpan transcurrio = DateTime.Now - this._inicio;
-            Console.WriteLine(transcurrio.ToString());
-            Console.WriteLine("time ");
-            cuentaStepper += 1;
-            
+            TimeSpan transcurrio = DateTime.Now - this._inicio;           
+            //cuentaStepper += 1;
+
             miliseconds += sender;
 
             if (miliseconds > 999) {
@@ -135,6 +134,9 @@ namespace Cronometro2._0
                 segundos.Text = seconds.ToString();
                 minutos.Text = minutes.ToString();
             });
+            if (minutes==Int32.Parse(TiempoTotal)) {
+                tiempo.Stop();
+            }
         }
 
         private void valores_Scroll(object sender, EventArgs e)
@@ -397,6 +399,7 @@ namespace Cronometro2._0
                     this.Start.Enabled = true;
                     this.Stop.Enabled = false;
                     this.ESTADO.Text = "EN REPOSO";
+                    
                 }
 
                 ));
@@ -404,12 +407,53 @@ namespace Cronometro2._0
             }
             ///enviar a formulario
 
+            if (proceso==0) {
+                ////inicio completo del ciclo
+                if (CommandEcho.Equals("Time OK") || CommandEcho.Equals("SetPosition OK")) {
+                    proceso = 1;
+                }
+            }
+
+            if (proceso == 1) {
+                if (CommandEcho.Equals("Start OK"))
+                {
+                    proceso = 2;
+                }
+            }
+
+            if (proceso == 2 || proceso == 4) {
+                if (CommandEcho.Equals("Pause OK"))
+                {
+                    proceso = 3;
+                }
+            }
+
+            if (proceso == 3) {
+                if (CommandEcho.Equals("Resume OK"))
+                {
+                    proceso = 4;
+                }
+            }
+
+            if (proceso == 4 || proceso == 2 || proceso == 3) {
+                if (CommandEcho.Equals("Stop ok") || CommandEcho.Equals("Stopped"))
+                {
+                    proceso = 4;
+                }
+            }
+
+            if (proceso == 5) {
+                if (CommandEcho.Equals("Home OK"))
+                {
+                    proceso = 0;
+                }
+            }
+
+
             this.Invoke(new MethodInvoker(delegate
             {
                 statusmessage.Text = CommandEcho;
-            }
-
-                ));
+            }));
 
             socket.BeginReceive(new AsyncCallback(Receive), null);
         }
@@ -479,6 +523,6 @@ namespace Cronometro2._0
 
         }
 
-
+        
     }
 }

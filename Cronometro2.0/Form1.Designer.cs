@@ -47,6 +47,7 @@
             this.SstatusCrono = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.statusmessage = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.valores)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SstatusCrono)).BeginInit();
@@ -107,13 +108,14 @@
             // 
             // Progresivo
             // 
+            this.Progresivo.BackColor = System.Drawing.Color.White;
             this.Progresivo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Progresivo.Location = new System.Drawing.Point(327, 12);
             this.Progresivo.Name = "Progresivo";
             this.Progresivo.Size = new System.Drawing.Size(118, 46);
             this.Progresivo.TabIndex = 6;
             this.Progresivo.Text = "Progresivo";
-            this.Progresivo.UseVisualStyleBackColor = true;
+            this.Progresivo.UseVisualStyleBackColor = false;
             this.Progresivo.Click += new System.EventHandler(this.Progresivo_Click);
             // 
             // pictureBox1
@@ -154,7 +156,7 @@
             this.milisegundos.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.milisegundos.ForeColor = System.Drawing.Color.White;
             this.milisegundos.Image = ((System.Drawing.Image)(resources.GetObject("milisegundos.Image")));
-            this.milisegundos.Location = new System.Drawing.Point(785, 85);
+            this.milisegundos.Location = new System.Drawing.Point(766, 85);
             this.milisegundos.Name = "milisegundos";
             this.milisegundos.Size = new System.Drawing.Size(39, 42);
             this.milisegundos.TabIndex = 11;
@@ -178,7 +180,7 @@
             this.minutos.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.minutos.ForeColor = System.Drawing.Color.White;
             this.minutos.Image = ((System.Drawing.Image)(resources.GetObject("minutos.Image")));
-            this.minutos.Location = new System.Drawing.Point(610, 85);
+            this.minutos.Location = new System.Drawing.Point(577, 85);
             this.minutos.Name = "minutos";
             this.minutos.Size = new System.Drawing.Size(39, 42);
             this.minutos.TabIndex = 13;
@@ -214,6 +216,7 @@
             this.ESTADO.AutoSize = true;
             this.ESTADO.BackColor = System.Drawing.Color.MidnightBlue;
             this.ESTADO.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ESTADO.ForeColor = System.Drawing.Color.Snow;
             this.ESTADO.Image = global::Cronometro2._0.Properties.Resources.qzEYl1Y;
             this.ESTADO.Location = new System.Drawing.Point(505, 303);
             this.ESTADO.Name = "ESTADO";
@@ -226,9 +229,9 @@
             this.SstatusCrono.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.SstatusCrono.BackgroundImage = global::Cronometro2._0.Properties.Resources.qzEYl1Y;
             this.SstatusCrono.Image = global::Cronometro2._0.Properties.Resources.circle_red;
-            this.SstatusCrono.Location = new System.Drawing.Point(598, 147);
+            this.SstatusCrono.Location = new System.Drawing.Point(584, 147);
             this.SstatusCrono.Name = "SstatusCrono";
-            this.SstatusCrono.Size = new System.Drawing.Size(138, 134);
+            this.SstatusCrono.Size = new System.Drawing.Size(152, 142);
             this.SstatusCrono.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.SstatusCrono.TabIndex = 17;
             this.SstatusCrono.TabStop = false;
@@ -258,12 +261,25 @@
             this.statusmessage.TabIndex = 19;
             this.statusmessage.Text = "en espera";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Image = ((System.Drawing.Image)(resources.GetObject("label1.Image")));
+            this.label1.Location = new System.Drawing.Point(637, 76);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(37, 55);
+            this.label1.TabIndex = 20;
+            this.label1.Text = ":";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::Cronometro2._0.Properties.Resources.qzEYl1Y;
             this.ClientSize = new System.Drawing.Size(878, 376);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.statusmessage);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.SstatusCrono);
@@ -313,6 +329,7 @@
         private System.Windows.Forms.PictureBox SstatusCrono;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label statusmessage;
+        private System.Windows.Forms.Label label1;
     }
 }
 

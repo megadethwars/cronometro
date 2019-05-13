@@ -55,11 +55,11 @@
     <Compile Include="ControlOpciones.Designer.cs">
       <DependentUpon>ControlOpciones.cs</DependentUpon>
     </Compile>
-    <Compile Include="ControlPogresivo.cs">
+    <Compile Include="ControlProgresivo.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ControlPogresivo.Designer.cs">
-      <DependentUpon>ControlPogresivo.cs</DependentUpon>
+    <Compile Include="ControlProgresivo.Designer.cs">
+      <DependentUpon>ControlProgresivo.cs</DependentUpon>
     </Compile>
     <Compile Include="ControlRegresivo.cs">
       <SubType>UserControl</SubType>
@@ -79,8 +79,8 @@
     <EmbeddedResource Include="ControlOpciones.resx">
       <DependentUpon>ControlOpciones.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ControlPogresivo.resx">
-      <DependentUpon>ControlPogresivo.cs</DependentUpon>
+    <EmbeddedResource Include="ControlProgresivo.resx">
+      <DependentUpon>ControlProgresivo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ControlRegresivo.resx">
       <DependentUpon>ControlRegresivo.cs</DependentUpon>

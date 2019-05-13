@@ -10,12 +10,12 @@ using System.Windows.Forms;
 
 namespace Cronometro2._0
 {
-    public partial class ControlPogresivo : UserControl
+    public partial class ControlProgresivo : UserControl
     {
 
         public delegate void EventoEnter(string inter, EventArgs e);
         public event EventoEnter enter;
-        public ControlPogresivo()
+        public ControlProgresivo()
         {
             InitializeComponent();
             

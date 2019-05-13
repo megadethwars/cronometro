@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace Cronometro2._0
 {
-    partial class ControlPogresivo
+    partial class ControlProgresivo
     {
         /// <summary> 
         /// Variable del diseñador necesaria.
