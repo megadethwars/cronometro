@@ -87,8 +87,7 @@
             // 
             this.valores.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.valores.Location = new System.Drawing.Point(158, 82);
-            this.valores.Maximum = 20;
-            this.valores.Minimum = 10;
+            this.valores.Maximum = 21;
             this.valores.Name = "valores";
             this.valores.Size = new System.Drawing.Size(157, 45);
             this.valores.TabIndex = 3;

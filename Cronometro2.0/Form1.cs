@@ -141,7 +141,7 @@ namespace Cronometro2._0
 
         private void valores_Scroll(object sender, EventArgs e)
         {
-            
+            SendVariableTime("VY",(int)sender);
             //tiempo.SetInterval(valores.Value);
         }
 
@@ -332,6 +332,25 @@ namespace Cronometro2._0
             if (sender == 4)
             {
                 activateRight = false;
+            }
+        }
+
+     //variar la velocidad del timer
+        private bool SendVariableTime(string command, int data) {
+
+          
+            try
+            {
+                int defaultperiod = 1757812;
+                data = defaultperiod + (data - 10) * 1000;
+                string welcome = command + "|" + data;
+                byte[] dato = Encoding.ASCII.GetBytes(welcome);
+                socket.Send(dato, dato.Length, RemoteEndPoint);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
             }
         }
 
