@@ -33,6 +33,16 @@ namespace Cronometro2._0
             tiempo.Start(); 
         }
 
+        public void pause() {
+
+        }
+
+        public void restart() {
+        }
+
+        public void resume() {
+        }
+
         public void Stop() {
             tiempo.Stop();
             TimeSpan transcurrio = DateTime.Now - this._inicio;

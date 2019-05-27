@@ -48,6 +48,7 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.statusmessage = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.Reset = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.valores)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SstatusCrono)).BeginInit();
@@ -65,7 +66,7 @@
             // 
             // Start
             // 
-            this.Start.Image = global::Cronometro2._0.Properties.Resources.play;
+            this.Start.Image = ((System.Drawing.Image)(resources.GetObject("Start.Image")));
             this.Start.Location = new System.Drawing.Point(27, 81);
             this.Start.Name = "Start";
             this.Start.Size = new System.Drawing.Size(107, 60);
@@ -75,7 +76,7 @@
             // 
             // Stop
             // 
-            this.Stop.Image = global::Cronometro2._0.Properties.Resources.stop;
+            this.Stop.Image = ((System.Drawing.Image)(resources.GetObject("Stop.Image")));
             this.Stop.Location = new System.Drawing.Point(340, 81);
             this.Stop.Name = "Stop";
             this.Stop.Size = new System.Drawing.Size(105, 60);
@@ -87,11 +88,10 @@
             // 
             this.valores.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.valores.Location = new System.Drawing.Point(158, 82);
-            this.valores.Maximum = 21;
+            this.valores.Maximum = 4;
             this.valores.Name = "valores";
             this.valores.Size = new System.Drawing.Size(157, 45);
             this.valores.TabIndex = 3;
-            this.valores.Value = 10;
             this.valores.Scroll += new System.EventHandler(this.valores_Scroll);
             // 
             // TypeRegresivo
@@ -120,8 +120,8 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.pictureBox1.BackgroundImage = global::Cronometro2._0.Properties.Resources.qzEYl1Y;
-            this.pictureBox1.Image = global::Cronometro2._0.Properties.Resources.circle_red;
+            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(837, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(29, 28);
@@ -131,7 +131,7 @@
             // 
             // Home
             // 
-            this.Home.Image = global::Cronometro2._0.Properties.Resources.home;
+            this.Home.Image = ((System.Drawing.Image)(resources.GetObject("Home.Image")));
             this.Home.Location = new System.Drawing.Point(191, 12);
             this.Home.Name = "Home";
             this.Home.Size = new System.Drawing.Size(94, 46);
@@ -141,8 +141,8 @@
             // 
             // Opciones
             // 
-            this.Opciones.Image = global::Cronometro2._0.Properties.Resources.icons8_llave_64;
-            this.Opciones.Location = new System.Drawing.Point(793, 272);
+            this.Opciones.Image = ((System.Drawing.Image)(resources.GetObject("Opciones.Image")));
+            this.Opciones.Location = new System.Drawing.Point(793, 227);
             this.Opciones.Name = "Opciones";
             this.Opciones.Size = new System.Drawing.Size(73, 62);
             this.Opciones.TabIndex = 7;
@@ -203,7 +203,7 @@
             this.MENSAJE.BackColor = System.Drawing.Color.Green;
             this.MENSAJE.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MENSAJE.ForeColor = System.Drawing.Color.White;
-            this.MENSAJE.Image = global::Cronometro2._0.Properties.Resources.qzEYl1Y;
+            this.MENSAJE.Image = ((System.Drawing.Image)(resources.GetObject("MENSAJE.Image")));
             this.MENSAJE.Location = new System.Drawing.Point(591, 9);
             this.MENSAJE.Name = "MENSAJE";
             this.MENSAJE.Size = new System.Drawing.Size(141, 37);
@@ -216,7 +216,7 @@
             this.ESTADO.BackColor = System.Drawing.Color.MidnightBlue;
             this.ESTADO.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ESTADO.ForeColor = System.Drawing.Color.Snow;
-            this.ESTADO.Image = global::Cronometro2._0.Properties.Resources.qzEYl1Y;
+            this.ESTADO.Image = ((System.Drawing.Image)(resources.GetObject("ESTADO.Image")));
             this.ESTADO.Location = new System.Drawing.Point(505, 303);
             this.ESTADO.Name = "ESTADO";
             this.ESTADO.Size = new System.Drawing.Size(184, 31);
@@ -226,8 +226,8 @@
             // SstatusCrono
             // 
             this.SstatusCrono.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.SstatusCrono.BackgroundImage = global::Cronometro2._0.Properties.Resources.qzEYl1Y;
-            this.SstatusCrono.Image = global::Cronometro2._0.Properties.Resources.circle_red;
+            this.SstatusCrono.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("SstatusCrono.BackgroundImage")));
+            this.SstatusCrono.Image = ((System.Drawing.Image)(resources.GetObject("SstatusCrono.Image")));
             this.SstatusCrono.Location = new System.Drawing.Point(584, 147);
             this.SstatusCrono.Name = "SstatusCrono";
             this.SstatusCrono.Size = new System.Drawing.Size(152, 142);
@@ -238,8 +238,8 @@
             // pictureBox2
             // 
             this.pictureBox2.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.pictureBox2.BackgroundImage = global::Cronometro2._0.Properties.Resources.qzEYl1Y;
-            this.pictureBox2.Image = global::Cronometro2._0.Properties.Resources.circle_red;
+            this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
             this.pictureBox2.Location = new System.Drawing.Point(27, 340);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(29, 28);
@@ -253,7 +253,7 @@
             this.statusmessage.Cursor = System.Windows.Forms.Cursors.Default;
             this.statusmessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.statusmessage.ForeColor = System.Drawing.Color.White;
-            this.statusmessage.Image = global::Cronometro2._0.Properties.Resources.qzEYl1Y;
+            this.statusmessage.Image = ((System.Drawing.Image)(resources.GetObject("statusmessage.Image")));
             this.statusmessage.Location = new System.Drawing.Point(75, 354);
             this.statusmessage.Name = "statusmessage";
             this.statusmessage.Size = new System.Drawing.Size(71, 15);
@@ -272,12 +272,24 @@
             this.label1.TabIndex = 20;
             this.label1.Text = ":";
             // 
+            // Reset
+            // 
+            this.Reset.Location = new System.Drawing.Point(821, 323);
+            this.Reset.Name = "Reset";
+            this.Reset.Size = new System.Drawing.Size(47, 40);
+            this.Reset.TabIndex = 21;
+            this.Reset.UseVisualStyleBackColor = true;
+            this.Reset.Click += new System.EventHandler(this.Reset_Click);
+            // 
             // Form1
             // 
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::Cronometro2._0.Properties.Resources.qzEYl1Y;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(878, 376);
+            this.Controls.Add(this.Reset);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.statusmessage);
             this.Controls.Add(this.pictureBox2);
@@ -329,6 +341,7 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label statusmessage;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button Reset;
     }
 }
 

@@ -25,7 +25,7 @@ const int out1 =  8;
 const int out2 =  9;
 const int out3 =  3;
 const int out4 =  4;
-Stepper myStepper(stepsPerRevolution, 8, 9, 3, 4);
+Stepper myStepper(stepsPerRevolution, 23, 27, 25, 29);
 
 int stepCount = 0;         // number of steps the motor has taken
 
@@ -37,11 +37,11 @@ int banderaPosition=0;
 int banderaTimer=0;
 int cuentalimite=0;
 bool stopped=true;
+bool started=false;
+bool paused=false;
+bool resumed=false;
 void setup() {
-  pinMode(out1, OUTPUT);
-  pinMode(out2, OUTPUT);
-  pinMode(out3, OUTPUT);
-  pinMode(out4, OUTPUT);
+  myStepper.setSpeed(20);
 
   
   // put your setup code here, to run once:
@@ -103,6 +103,10 @@ void loop() {
               Send("Resume OK",1);
             }
 
+          if(CMD=="VY"){
+              SetSpeed(DATA);
+            }
+
           if(CMD=="T"){
               setTime(DATA);
               Send("Time OK",1);
@@ -144,7 +148,7 @@ void loop() {
 void callback(){
 
     if(stepCount<cuentalimite && stepCount!=cuentalimite){
-        myStepper.step(1);        
+        myStepper.step(-1);        
         stepCount=stepCount+1;
         //Send("COUNTING",stepCount); 
         Serial.print("counting ");
@@ -153,6 +157,11 @@ void callback(){
    
   }
 
+void SetSpeed(long period){
+     Timer1.stop();
+     Timer1.setPeriod(period);
+     Serial.println(period);
+  }
 
 void setTime(int tiempo){
   
@@ -183,12 +192,16 @@ void Start(){
         cuentalimite=0;
         }
   Timer1.setPeriod(1757812);
-  Timer1.resume();
+  //Timer1.resume();
    stopped=false;
+   started=true;
+   
   }
 
 void Resume(){
    Timer1.resume();
+   resumed=true;
+   paused=false;
   }
 
 void Stop(){
@@ -196,6 +209,7 @@ void Stop(){
   Send("Stopped",1);
   Timer1.stop();
    stopped=true;
+   started=false;
   }
 
 void Alert(){
@@ -203,6 +217,8 @@ void Alert(){
 
 void Pause(){
   Timer1.stop();
+  resumed=false;
+  paused=true;
   }
 
 void Send(String estatus,int cuenta){
@@ -275,18 +291,15 @@ void Home(){
        Serial.println("");
       }
      */
-
     if(stepCount>0){
       myStepper.step(stepCount);
          stepCount=0;
       }
 
     if(stepCount<0){
-      myStepper.step(-stepCount);
+      myStepper.step(stepCount);
          stepCount=0;
-      }
-     
-    
+      }       
     stepCount=0;
     cuentalimite=0;
   }
@@ -298,9 +311,9 @@ void SetPosition(int cuenta3){
     delay(100);
     
   
-    myStepper.step(-cuenta3);
+    myStepper.step(cuenta3);
     stepCount=-cuenta3;
-    
+    Serial.println(stepCount);
     Timer1.setPeriod(1757812);
     Timer1.stop();
 

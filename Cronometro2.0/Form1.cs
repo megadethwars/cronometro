@@ -24,6 +24,7 @@ namespace Cronometro2._0
         ControlProgresivo progresivo;
         ControlOpciones opciones;
         COnfiguracion config;
+        Operating OP;
 
         //banderas de progresivo y regresivo
         bool flagregresivo = false;
@@ -31,6 +32,8 @@ namespace Cronometro2._0
         bool flagStart = false;
         bool flagpause = false;
         bool flagstop = false;
+        bool flagresume = false;
+        bool flaghome = false;
         int proceso = 0;
 
         string TiempoTotal = null;
@@ -61,6 +64,7 @@ namespace Cronometro2._0
             opciones.move += MoveMotor;
             opciones.save += SaveConfig;
             config = opciones.DeserializeJson("configuration.json");
+            OP = new Operating();
             ServerEndPoint = new System.Net.IPEndPoint(System.Net.IPAddress.Any, config.localport);
             RemoteEndPoint = new System.Net.IPEndPoint(System.Net.IPAddress.Parse(config.ipaddress), config.port);
             socket = new UdpClient(config.localport);
@@ -71,6 +75,7 @@ namespace Cronometro2._0
             checkingDevice.Elapsed += Checking;
             checkingDevice.Start();
             this.Stop.Enabled = false;
+            this.valores.Enabled = false;
         }
 
         private void SaveConfig(COnfiguracion conf, EventArgs e)
@@ -85,25 +90,100 @@ namespace Cronometro2._0
 
         private void Start_Click(object sender, EventArgs e)
         {
-            tiempo.Start();
-            this._inicio = DateTime.Now;
-            flagStart = SendData("S", "01");
-
-            if (flagStart)
+            if (proceso == 1)
             {
-                this.Stop.Enabled = true;
-                this.Start.Enabled = false;
-                this.Invoke((MethodInvoker)delegate
+                tiempo.Start();
+                this._inicio = DateTime.Now;
+                flagStart = SendData("S", "01");
+                Thread.Sleep(200);
+                if (flagStart)
                 {
-                    ESTADO.Text = "ACTIVO";
-                });
-            }
-            else {
-                this.Invoke((MethodInvoker)delegate
+
+                    this.Stop.Enabled = true;
+
+                    this.Invoke((MethodInvoker)delegate
+                    {
+                        ESTADO.Text = "ACTIVO";
+                    });
+                }
+                else
                 {
-                    ESTADO.Text = "ERROR";
-                });
+                    this.Invoke((MethodInvoker)delegate
+                    {
+                        ESTADO.Text = "ERROR";
+                    });
+                }
             }
+            else if (proceso == 2)
+            {
+
+
+                flagpause = SendData("PS", "01");
+
+                if (flagpause)
+                {
+                    this.Stop.Enabled = true;
+
+                    this.Invoke((MethodInvoker)delegate
+                    {
+                        ESTADO.Text = "EN PAUSA";
+                    });
+                }
+                else
+                {
+                    this.Invoke((MethodInvoker)delegate
+                    {
+                        ESTADO.Text = "ERROR";
+                    });
+                }
+            }
+            else if (proceso == 3)
+            {
+                flagresume = SendData("RS", "01");
+
+                if (flagresume)
+                {
+                    this.Stop.Enabled = true;
+
+                    this.Invoke((MethodInvoker)delegate
+                    {
+                        ESTADO.Text = "ACTIVO";
+                    });
+                }
+                else
+                {
+                    this.Invoke((MethodInvoker)delegate
+                    {
+                        ESTADO.Text = "ERROR";
+                    });
+                }
+            }
+            else if (proceso == 4)
+            {
+                flagpause = SendData("PS", "01");
+
+                if (flagpause)
+                {
+                    this.Stop.Enabled = true;
+
+                    this.Invoke((MethodInvoker)delegate
+                    {
+                        ESTADO.Text = "EN PAUSA";
+                    });
+                }
+                else
+                {
+                    this.Invoke((MethodInvoker)delegate
+                    {
+                        ESTADO.Text = "ERROR";
+                    });
+                }
+            }
+            else
+            {
+                MessageBox.Show("parametros de tiempo no configurados");
+            }
+            
 
            
             //enviar a arduino
@@ -141,7 +221,9 @@ namespace Cronometro2._0
 
         private void valores_Scroll(object sender, EventArgs e)
         {
-            SendVariableTime("VY",(int)sender);
+            int variable = valores.Value;
+            Int32 tiempo = 1757812 - variable*329589;
+            SendVariableTime("VY", tiempo);
             //tiempo.SetInterval(valores.Value);
         }
 
@@ -193,7 +275,7 @@ namespace Cronometro2._0
             TiempoTotal = sender;
             sendRegressiveData("SP",TiempoTotal);
             this.Invoke((MethodInvoker)delegate {
-                MENSAJE.Text = "MODO REGRESIVO";
+                MENSAJE.Text = "REGRESIVO";
             });
 
         }
@@ -216,7 +298,7 @@ namespace Cronometro2._0
             TiempoTotal = sender;
             sendProgressiveData("T", TiempoTotal);
             this.Invoke((MethodInvoker)delegate {
-                MENSAJE.Text = "MODO PROGRESIVO";
+                MENSAJE.Text = "PROGRESIVO";
             });
         }
 
@@ -271,7 +353,6 @@ namespace Cronometro2._0
                 
             }
         }
-
 
         //envio progresivo a arduino
         private void sendProgressiveData(string command, string data) {
@@ -341,8 +422,7 @@ namespace Cronometro2._0
           
             try
             {
-                int defaultperiod = 1757812;
-                data = defaultperiod + (data - 10) * 1000;
+                
                 string welcome = command + "|" + data;
                 byte[] dato = Encoding.ASCII.GetBytes(welcome);
                 socket.Send(dato, dato.Length, RemoteEndPoint);
@@ -418,9 +498,8 @@ namespace Cronometro2._0
                     this.Start.Enabled = true;
                     this.Stop.Enabled = false;
                     this.ESTADO.Text = "EN REPOSO";
-                    
-                }
-
+                                      
+                }    
                 ));
                 
             }
@@ -436,43 +515,100 @@ namespace Cronometro2._0
             if (proceso == 1) {
                 if (CommandEcho.Equals("Start OK"))
                 {
+                    ////////Start 
+                    HideCOntrols();
+                    this.Invoke(new MethodInvoker(delegate
+                    {                       
+                        panel1.Controls.Clear();
+                        panel1.Controls.Add(OP);
+                        Start.Image = Properties.Resources.pause;
+                        valores.Enabled = true;
+                        
+                    }));
+                    
                     proceso = 2;
+                    
+                    flagStart = true;
+                    flagstop = false;
+                    flagpause = false;
+                    flagresume = false;
                 }
             }
 
             if (proceso == 2 || proceso == 4) {
                 if (CommandEcho.Equals("Pause OK"))
                 {
+                    ////////pause
+                    this.Invoke(new MethodInvoker(delegate
+                    {
+                        valores.Enabled = false;
+                        Start.Image = Properties.Resources.play;
+                    }));
+                    
                     proceso = 3;
+                    
+                    flagpause = true;
+                    flagStart = false;
+                    flagstop = false;
+                    flagresume = false;
                 }
             }
 
             if (proceso == 3) {
                 if (CommandEcho.Equals("Resume OK"))
                 {
+                    this.Invoke(new MethodInvoker(delegate
+                    {
+                        valores.Enabled = true;
+                        Start.Image = Properties.Resources.pause;
+                    }));
+                    
                     proceso = 4;
+                    flagpause = false;
+                    flagStart = false;
+                    flagstop = false;
+                    flagresume = true;
                 }
             }
 
             if (proceso == 4 || proceso == 2 || proceso == 3) {
                 if (CommandEcho.Equals("Stop ok") || CommandEcho.Equals("Stopped"))
                 {
-                    proceso = 4;
+                    ShowControls();
+                    this.Invoke(new MethodInvoker(delegate
+                    {
+                        
+                        valores.Enabled = false;
+                        Start.Image = Properties.Resources.play;
+                    }));
+                    
+                    proceso = 5;
+                    flagpause = false;
+                    flagStart = false;
+                    flagstop = true;
+                    flagresume = false;
                 }
             }
 
             if (proceso == 5) {
                 if (CommandEcho.Equals("Home OK"))
                 {
+                    
                     proceso = 0;
                 }
             }
 
-
-            this.Invoke(new MethodInvoker(delegate
+            try
             {
-                statusmessage.Text = CommandEcho;
-            }));
+                this.Invoke(new MethodInvoker(delegate
+                {
+                    statusmessage.Text = CommandEcho;
+                }));
+            }
+            catch (Exception ex) {
+
+            }
+            
 
             socket.BeginReceive(new AsyncCallback(Receive), null);
         }
@@ -481,7 +617,18 @@ namespace Cronometro2._0
         {
 
             Console.WriteLine("Closing");
-        // Then assume that X has been clicked and act accordingly.
+            try
+            {
+                string welcome = "H|01";
+                byte[] dato = Encoding.ASCII.GetBytes(welcome);
+                socket.Send(dato, dato.Length, RemoteEndPoint);
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            // Then assume that X has been clicked and act accordingly.
         }
 
         public  void PingHost(object nameOrAddress)
@@ -542,6 +689,23 @@ namespace Cronometro2._0
 
         }
 
-        
+        private void HideCOntrols() {
+            this.Invoke(new MethodInvoker(delegate
+            {
+                
+            }));
+        }
+
+        private void ShowControls() {
+            this.Invoke(new MethodInvoker(delegate
+            {
+
+            }));
+        }
+
+        private void Reset_Click(object sender, EventArgs e)
+        {
+            proceso = 0;
+        }
     }
 }
