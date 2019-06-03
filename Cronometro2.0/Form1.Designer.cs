@@ -44,14 +44,15 @@
             this.horas = new System.Windows.Forms.Label();
             this.MENSAJE = new System.Windows.Forms.Label();
             this.ESTADO = new System.Windows.Forms.Label();
-            this.SstatusCrono = new System.Windows.Forms.PictureBox();
+            this.StatusCrono = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.statusmessage = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.Reset = new System.Windows.Forms.Button();
+            this.IndexMins = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.valores)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SstatusCrono)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StatusCrono)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,9 +60,9 @@
             // 
             this.panel1.AutoScroll = true;
             this.panel1.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.panel1.Location = new System.Drawing.Point(27, 147);
+            this.panel1.Location = new System.Drawing.Point(27, 185);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(418, 187);
+            this.panel1.Size = new System.Drawing.Size(418, 149);
             this.panel1.TabIndex = 0;
             // 
             // Start
@@ -201,12 +202,12 @@
             // 
             this.MENSAJE.AutoSize = true;
             this.MENSAJE.BackColor = System.Drawing.Color.Green;
-            this.MENSAJE.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MENSAJE.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MENSAJE.ForeColor = System.Drawing.Color.White;
             this.MENSAJE.Image = ((System.Drawing.Image)(resources.GetObject("MENSAJE.Image")));
-            this.MENSAJE.Location = new System.Drawing.Point(591, 9);
+            this.MENSAJE.Location = new System.Drawing.Point(615, 9);
             this.MENSAJE.Name = "MENSAJE";
-            this.MENSAJE.Size = new System.Drawing.Size(141, 37);
+            this.MENSAJE.Size = new System.Drawing.Size(121, 31);
             this.MENSAJE.TabIndex = 15;
             this.MENSAJE.Text = "CRONO";
             // 
@@ -223,17 +224,17 @@
             this.ESTADO.TabIndex = 16;
             this.ESTADO.Text = "EN REPOSO";
             // 
-            // SstatusCrono
+            // StatusCrono
             // 
-            this.SstatusCrono.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.SstatusCrono.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("SstatusCrono.BackgroundImage")));
-            this.SstatusCrono.Image = ((System.Drawing.Image)(resources.GetObject("SstatusCrono.Image")));
-            this.SstatusCrono.Location = new System.Drawing.Point(584, 147);
-            this.SstatusCrono.Name = "SstatusCrono";
-            this.SstatusCrono.Size = new System.Drawing.Size(152, 142);
-            this.SstatusCrono.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.SstatusCrono.TabIndex = 17;
-            this.SstatusCrono.TabStop = false;
+            this.StatusCrono.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.StatusCrono.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("StatusCrono.BackgroundImage")));
+            this.StatusCrono.Image = ((System.Drawing.Image)(resources.GetObject("StatusCrono.Image")));
+            this.StatusCrono.Location = new System.Drawing.Point(584, 147);
+            this.StatusCrono.Name = "StatusCrono";
+            this.StatusCrono.Size = new System.Drawing.Size(152, 142);
+            this.StatusCrono.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.StatusCrono.TabIndex = 17;
+            this.StatusCrono.TabStop = false;
             // 
             // pictureBox2
             // 
@@ -281,19 +282,31 @@
             this.Reset.UseVisualStyleBackColor = true;
             this.Reset.Click += new System.EventHandler(this.Reset_Click);
             // 
+            // IndexMins
+            // 
+            this.IndexMins.AutoSize = true;
+            this.IndexMins.BackColor = System.Drawing.Color.Green;
+            this.IndexMins.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.IndexMins.ForeColor = System.Drawing.Color.White;
+            this.IndexMins.Image = ((System.Drawing.Image)(resources.GetObject("IndexMins.Image")));
+            this.IndexMins.Location = new System.Drawing.Point(462, 9);
+            this.IndexMins.Name = "IndexMins";
+            this.IndexMins.Size = new System.Drawing.Size(84, 31);
+            this.IndexMins.TabIndex = 22;
+            this.IndexMins.Text = "0 min";
+            // 
             // Form1
             // 
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
-
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(878, 376);
+            this.Controls.Add(this.IndexMins);
             this.Controls.Add(this.Reset);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.statusmessage);
             this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.SstatusCrono);
+            this.Controls.Add(this.StatusCrono);
             this.Controls.Add(this.ESTADO);
             this.Controls.Add(this.MENSAJE);
             this.Controls.Add(this.horas);
@@ -311,9 +324,10 @@
             this.Controls.Add(this.panel1);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.valores)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SstatusCrono)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StatusCrono)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -337,11 +351,12 @@
         private System.Windows.Forms.Label horas;
         private System.Windows.Forms.Label MENSAJE;
         private System.Windows.Forms.Label ESTADO;
-        private System.Windows.Forms.PictureBox SstatusCrono;
+        private System.Windows.Forms.PictureBox StatusCrono;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label statusmessage;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button Reset;
+        private System.Windows.Forms.Label IndexMins;
     }
 }
 

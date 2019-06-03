@@ -40,6 +40,7 @@ bool stopped=true;
 bool started=false;
 bool paused=false;
 bool resumed=false;
+bool homed = false;
 void setup() {
   myStepper.setSpeed(20);
 
@@ -134,7 +135,11 @@ void loop() {
             }
             
           if(CMD=="StopEn"){
-            Serial.println("motor stopped");
+            //Serial.println("motor stopped");
+            }
+
+          if(CMD=="Status"){
+             Status();
             }
     }
     memset(packetBuffer, 0, UDP_TX_PACKET_MAX_SIZE);
@@ -195,21 +200,29 @@ void Start(){
   //Timer1.resume();
    stopped=false;
    started=true;
-   
+   paused=false;
+   homed=false;
+   resumed=false;
   }
 
 void Resume(){
    Timer1.resume();
    resumed=true;
    paused=false;
+   started=false;
+   stopped=false;
+   homed=false;
   }
 
 void Stop(){
   //TurnOff();
   Send("Stopped",1);
   Timer1.stop();
-   stopped=true;
+   resumed=false;
+   paused=false;
    started=false;
+   stopped=true;
+   homed=false;
   }
 
 void Alert(){
@@ -217,8 +230,11 @@ void Alert(){
 
 void Pause(){
   Timer1.stop();
-  resumed=false;
-  paused=true;
+   resumed=false;;
+   paused=true;
+   started=false;
+   stopped=false;
+   homed=false;
   }
 
 void Send(String estatus,int cuenta){
@@ -242,7 +258,7 @@ String Read(){
 void Right(int cuenta){
     Timer1.stop();
     Serial.println("motor hacia adelante"); 
-    myStepper.step(5);
+    myStepper.step(-5);
   }
 
 
@@ -250,7 +266,7 @@ void Left(int cuenta2){
     Timer1.stop();
     Serial.println("motor hacia atras");
     cuenta2=cuenta2 - 2*cuenta2;
-    myStepper.step(-5);
+    myStepper.step(5);
   }
 
 void StopEngine(){
@@ -276,6 +292,11 @@ void TurnOn(){
 void Home(){
     Timer1.stop();
     delay(200);
+    resumed=false;
+    paused=false;
+    started=false;
+    stopped=false;
+    homed=true;
     /*
     if(stepCount>0){
          myStepper.step(stepCount);
@@ -304,6 +325,28 @@ void Home(){
     cuentalimite=0;
   }
 
+void Status(){
+
+   if(started==true){
+    Send("Start OK",2);
+    }
+    
+   if(paused==true){
+    Send("Pause OK",2);
+    }
+
+   if(resumed==true){
+    Send("Resume OK",2);
+    }
+
+   if(stopped==true){
+    Send("Stop OK",2);
+    }
+
+   if(homed==true){
+    Send("Home OK",2);
+    }
+  }
 
 void SetPosition(int cuenta3){
 

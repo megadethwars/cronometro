@@ -35,7 +35,7 @@
             // 
             this.l.AutoSize = true;
             this.l.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.l.Location = new System.Drawing.Point(63, 71);
+            this.l.Location = new System.Drawing.Point(76, 90);
             this.l.Name = "l";
             this.l.Size = new System.Drawing.Size(228, 39);
             this.l.TabIndex = 0;
@@ -48,7 +48,7 @@
             this.BackColor = System.Drawing.Color.Green;
             this.Controls.Add(this.l);
             this.Name = "Operating";
-            this.Size = new System.Drawing.Size(341, 185);
+            this.Size = new System.Drawing.Size(414, 211);
             this.ResumeLayout(false);
             this.PerformLayout();
 

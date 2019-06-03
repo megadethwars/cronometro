@@ -44,6 +44,7 @@ namespace Cronometro2._0
         }
 
         public void Stop() {
+            
             tiempo.Stop();
             TimeSpan transcurrio = DateTime.Now - this._inicio;
         }
