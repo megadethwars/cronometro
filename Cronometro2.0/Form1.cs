@@ -98,6 +98,7 @@ namespace Cronometro2._0
 
         private void Start_Click(object sender, EventArgs e)
         {
+            TimeOutStatus.Start();
             if (proceso == 1)
             {
                 ResetCronometer();
@@ -290,6 +291,7 @@ namespace Cronometro2._0
         private void Home_Click(object sender, EventArgs e)
         {
             ///enviar motor a posicion inicial
+            TimeOutStatus.Start();
             cuentaStepper = 0;
 
             try
@@ -356,6 +358,7 @@ namespace Cronometro2._0
             seconds = 0;
             minutes = 0;
             flagstop = SendData("ST", "01");
+
             /*
             this.Start.Enabled = true;
             this.Stop.Enabled = false;
@@ -542,7 +545,7 @@ namespace Cronometro2._0
 
         private void Receive(IAsyncResult res)
         {
-
+            TimeOutStatus.Stop();
             byte[] received = socket.EndReceive(res, ref ServerEndPoint);
             String data = Encoding.UTF8.GetString(received);
 
@@ -666,7 +669,8 @@ namespace Cronometro2._0
                 {
                     this.Start.Enabled = true;
                     this.Stop.Enabled = false;
-                    this.ESTADO.Text = "EN REPOSO";                                   
+                    this.ESTADO.Text = "EN REPOSO";
+                    StatusCrono.Image = Properties.Resources.circle_red;
                 }    
                 ));
                 
@@ -769,7 +773,7 @@ namespace Cronometro2._0
                         valores.Value = 0;
                         valores.Enabled = false;
                         Start.Image = Properties.Resources.play;
-                        StatusCrono.Image = Properties.Resources.Circle_Green;
+                        StatusCrono.Image = Properties.Resources.circle_red;
                     }));
                   
                     this.Invoke((MethodInvoker)delegate {
@@ -810,6 +814,8 @@ namespace Cronometro2._0
 
         private void ErrorReceived(object sender, ElapsedEventArgs e)
         {
+            TimeOutStatus.Stop();
+            MessageBox.Show("Error de Comunicacion ");
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
