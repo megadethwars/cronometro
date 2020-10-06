@@ -35,6 +35,7 @@ namespace Cronometro2._0
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.Set = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -66,14 +67,25 @@ namespace Cronometro2._0
             this.Set.UseVisualStyleBackColor = true;
             this.Set.Click += new System.EventHandler(this.Set_Click);
             // 
-            // ControlPogresivo
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(1, 46);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(154, 31);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Progresivo";
+            // 
+            // ControlProgresivo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.Set);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
-            this.Name = "ControlPogresivo";
+            this.Name = "ControlProgresivo";
             this.Size = new System.Drawing.Size(264, 160);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -85,5 +97,6 @@ namespace Cronometro2._0
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox1;
         private Button Set;
+        private Label label2;
     }
 }

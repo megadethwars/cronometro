@@ -225,7 +225,7 @@ namespace Cronometro2._0
             TimeSpan transcurrio = DateTime.Now - this._inicio;           
             //cuentaStepper += 1;
 
-            miliseconds += sender;
+            miliseconds += 1000;
 
             if (miliseconds > 999) {
                 seconds += 1;
@@ -270,8 +270,42 @@ namespace Cronometro2._0
         private void valores_Scroll(object sender, EventArgs e)
         {
             int variable = valores.Value;
-            Int32 tiempo = 1757812 - variable*329589;
-            SendVariableTime("VY", tiempo);
+            Int32 tiempo2 = 1757812 - variable*329589;
+            SendVariableTime("VY", tiempo2);
+
+            switch (variable) {
+                case 1:
+                    tiempo.Stop();
+                    tiempo.SetInterval((int)(1000.0f * 0.81f));
+                    tiempo.Start();
+                    break;
+
+                case 2:
+                    tiempo.Stop();
+                    tiempo.SetInterval((int)(1000.0f * 0.62f));
+                    tiempo.Start();
+                    break;
+
+                case 3:
+                    tiempo.Stop();
+                    tiempo.SetInterval((int)(1000.0f * 0.43f));
+                    tiempo.Start();
+                    break;
+
+                case 4:
+                    tiempo.Stop();
+                    tiempo.SetInterval((int)(1000.0f * 0.25f));
+                    tiempo.Start();
+                    break;
+
+                case 0:
+                    tiempo.Stop();
+                    tiempo.SetInterval(1000);
+                    tiempo.Start();
+                    break;
+            }
+
+           
             //tiempo.SetInterval(valores.Value);
         }
 
@@ -358,7 +392,7 @@ namespace Cronometro2._0
             seconds = 0;
             minutes = 0;
             flagstop = SendData("ST", "01");
-
+            tiempo.SetInterval(1000);
             /*
             this.Start.Enabled = true;
             this.Stop.Enabled = false;
@@ -617,7 +651,7 @@ namespace Cronometro2._0
                     }));
 
 
-
+                    tiempo.Start();
                     this.Invoke((MethodInvoker)delegate
                     {
                         this.Stop.Enabled = true;
@@ -748,7 +782,7 @@ namespace Cronometro2._0
                         StatusCrono.Image = Properties.Resources.Circle_Green;
                     }));
 
-                    
+                    tiempo.Start();
 
                     this.Invoke((MethodInvoker)delegate
                     {

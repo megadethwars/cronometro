@@ -10,7 +10,7 @@
 
 //////configuracion de ethernet
 byte mac[] = { 0xDE, 0xA8, 0xBA, 0xEF, 0xFE, 0xEE}; //Assign a mac address
-IPAddress ip(192, 168, 1, 177); //Assign my IP adress
+IPAddress ip(192, 168, 130, 1); //Assign my IP adress
 unsigned int localPort = 8888; //Assign a Port to talk over
 char packetBuffer[UDP_TX_PACKET_MAX_SIZE];
 String datReq; //String for our data
