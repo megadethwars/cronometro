@@ -20,6 +20,10 @@ namespace Cronometro2._0
 
         public delegate void EventoSave(COnfiguracion conf, EventArgs e);
         public event EventoSave save;
+
+        public delegate void EventoReset(int something, EventArgs e);
+        public event EventoReset restart;
+
         public ControlOpciones()
         {
             InitializeComponent();
@@ -125,25 +129,60 @@ namespace Cronometro2._0
 
 
         public void back_Click_Down(object sender,EventArgs e) {
-            move(1, null);
+            
         }
 
         public void back_Click_Up(object sender, EventArgs e)
         {
-            move(2, null);
+            
         }
 
         public void forward_Click_Down(object sender, EventArgs e)
         {
-            move(3, null);
+            
         }
 
         public void forward_Click_Up(object sender, EventArgs e)
         {
+            
+        }
+
+
+
+
+
+
+
+        private void forward_Click_Down(object sender, MouseEventArgs e)
+        {
+            move(3, null);
+        }
+
+        private void forward_Click_Up(object sender, MouseEventArgs e)
+        {
             move(4, null);
         }
 
-        
+        private void back_Click_Down(object sender, MouseEventArgs e)
+        {
+            move(1, null);
+        }
+
+        private void back_Click_Up(object sender, MouseEventArgs e)
+        {
+            move(2, null);
+        }
+
+        private void Reset_Click(object sender, EventArgs e)
+        {
+            restart(0,null);
+        }
+
+
+
+
+
+       
     }
 
 }

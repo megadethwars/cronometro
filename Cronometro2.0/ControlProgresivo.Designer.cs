@@ -41,27 +41,28 @@ namespace Cronometro2._0
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(4, 15);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(125, 75);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(260, 31);
+            this.label1.Size = new System.Drawing.Size(307, 37);
             this.label1.TabIndex = 0;
             this.label1.Text = "Tiempo en minutos";
             // 
             // textBox1
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(51, 80);
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(147, 163);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(145, 29);
+            this.textBox1.Size = new System.Drawing.Size(234, 44);
             this.textBox1.TabIndex = 1;
             this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_KeyDown);
             // 
             // Set
             // 
-            this.Set.Location = new System.Drawing.Point(84, 124);
+            this.Set.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Set.Location = new System.Drawing.Point(174, 213);
             this.Set.Name = "Set";
-            this.Set.Size = new System.Drawing.Size(75, 23);
+            this.Set.Size = new System.Drawing.Size(145, 52);
             this.Set.TabIndex = 2;
             this.Set.Text = "SET";
             this.Set.UseVisualStyleBackColor = true;
@@ -70,10 +71,10 @@ namespace Cronometro2._0
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(1, 46);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(140, 112);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(154, 31);
+            this.label2.Size = new System.Drawing.Size(179, 37);
             this.label2.TabIndex = 3;
             this.label2.Text = "Progresivo";
             // 
@@ -86,7 +87,7 @@ namespace Cronometro2._0
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
             this.Name = "ControlProgresivo";
-            this.Size = new System.Drawing.Size(264, 160);
+            this.Size = new System.Drawing.Size(531, 348);
             this.ResumeLayout(false);
             this.PerformLayout();
 

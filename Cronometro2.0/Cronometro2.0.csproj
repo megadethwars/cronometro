@@ -159,5 +159,41 @@
   <ItemGroup>
     <None Include="Resources\pause.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\conexion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cronotext.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FORMATO.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PAUSA.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PLAY.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PROGRESIVO.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\regresivo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reposo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\STOP.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HOME2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-repetir-64.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

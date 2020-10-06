@@ -50,5 +50,10 @@ namespace Cronometro2._0
                 enter(textBox1.Text, null);
             });
         }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
